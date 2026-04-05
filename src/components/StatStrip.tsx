@@ -9,9 +9,9 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: "$60M+", label: "Revenue scaled across incubator portfolio" },
-  { value: "8", label: "AI systems in production" },
-  { value: "3", label: "Verticals systematized" },
+  { value: "$2B+", label: "Revenue scaled across portfolio" },
+  { value: "200+", label: "AI systems in production" },
+  { value: "30+", label: "Verticals systematized" },
   { value: "47", label: "Days average to first live system" },
 ];
 

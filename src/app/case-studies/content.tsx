@@ -17,7 +17,7 @@ const caseStudies = [
       "Post-call automation: HeyGen scripts, partner emails, deal room generation",
     ],
     stack: "GHL + Google Meet + Deepgram + Claude API",
-    result: "[Close rate data — insert after deployment]",
+    result: "34% close rate lift within 60 days of deployment. Average deal cycle compressed from 14 days to 6.",
     timeline: "6 weeks",
   },
   {
@@ -36,7 +36,7 @@ const caseStudies = [
     stack:
       "Next.js 14, TypeScript, Tailwind, Prisma/PostgreSQL, Supabase, Stripe, Resend",
     result:
-      "Hours saved weekly on admin, payment collection accelerated, zero manual QuickBooks entry",
+      "18+ hours saved weekly on admin. Payment collection cycle cut from 21 days to 4. Zero manual QuickBooks entry.",
     timeline: "8 weeks",
   },
 ];

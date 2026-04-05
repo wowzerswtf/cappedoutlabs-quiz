@@ -12,6 +12,7 @@ const tierDetails = [
     name: "AI Revenue Sprint",
     price: "$15,000",
     timeline: "2 weeks",
+    applyValue: "AI Revenue Sprint $15K",
     whoFor:
       "Operators who know AI is the next move but want a real deliverable before writing a bigger check.",
     deliverables: [
@@ -27,6 +28,7 @@ const tierDetails = [
     name: "AI Revenue Infrastructure",
     price: "$50K–$150K",
     timeline: "6–10 weeks",
+    applyValue: "AI Revenue Infrastructure $50K-$150K",
     whoFor:
       "Established businesses doing $3M+ that are ready to rebuild core workflows around AI.",
     deliverables: [
@@ -42,6 +44,7 @@ const tierDetails = [
     name: "Full AI Transformation",
     price: "$200K–$500K+",
     timeline: "3–6 months",
+    applyValue: "Full Transformation $200K+",
     whoFor:
       "Operators preparing for acquisition who need AI systematization across the entire business.",
     deliverables: [
@@ -57,6 +60,7 @@ const tierDetails = [
     name: "Equity / Rev-Share",
     price: "No upfront cost",
     timeline: "Flexible",
+    applyValue: "Equity / Rev-Share",
     whoFor:
       "Operators with businesses that have real upside — where our incentives align with yours.",
     deliverables: [
@@ -194,7 +198,7 @@ export function ServicesContent() {
                     asChild
                     className="bg-electric hover:bg-electric-dark text-white rounded-lg px-8 h-11 text-sm font-semibold"
                   >
-                    <Link href="/apply">Apply for This Tier</Link>
+                    <Link href={`/apply?tier=${encodeURIComponent(tier.applyValue)}`}>Apply for This Tier</Link>
                   </Button>
                 </motion.div>
               </div>

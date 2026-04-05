@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { ApplicationForm } from "@/components/ApplicationForm";
 import { fadeUp, staggerContainer } from "@/lib/animations";
@@ -51,7 +52,9 @@ export function ApplyContent() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3">
-              <ApplicationForm />
+              <Suspense fallback={null}>
+                <ApplicationForm />
+              </Suspense>
             </div>
 
             {/* Sidebar */}

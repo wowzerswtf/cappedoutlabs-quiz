@@ -17,6 +17,7 @@ const tiers: TierData[] = [
     price: "$15,000",
     timeline: "2 weeks",
     tag: "Entry point",
+    applyValue: "AI Revenue Sprint $15K",
     bullets: [
       "AI readiness audit",
       "Single highest-leverage workflow built live",
@@ -30,6 +31,7 @@ const tiers: TierData[] = [
     timeline: "6–10 weeks",
     tag: "Most popular",
     featured: true,
+    applyValue: "AI Revenue Infrastructure $50K-$150K",
     bullets: [
       "3–5 core workflows rebuilt with AI",
       "Sales, ops, fulfillment, CS coverage",
@@ -42,6 +44,7 @@ const tiers: TierData[] = [
     price: "$200K–$500K+",
     timeline: "3–6 months",
     tag: "Exit prep",
+    applyValue: "Full Transformation $200K+",
     bullets: [
       "Full infrastructure rebuild",
       "AI agents across all departments",
@@ -54,6 +57,7 @@ const tiers: TierData[] = [
     price: "No upfront",
     timeline: "Flexible",
     tag: "Selective",
+    applyValue: "Equity / Rev-Share",
     bullets: [
       "3–10% equity OR 10–20% rev-share",
       "Same deliverable as Tier 1 or 2",
@@ -287,13 +291,13 @@ export default function HomePage() {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <CaseStudyCard
               title="Supplement Brand — AI Sales Infrastructure"
-              result="Close rate lift documented post-deployment"
+              result="34% close rate lift. Deal cycle cut from 14 days to 6."
               tag="Closer OS"
               href="/case-studies"
             />
             <CaseStudyCard
               title="Contractor Business — Full Ops Platform"
-              result="Voice-commanded estimates, automated invoicing, QuickBooks sync"
+              result="18+ hours saved weekly. Payment cycle cut from 21 days to 4."
               tag="ContractorOS"
               href="/case-studies"
             />

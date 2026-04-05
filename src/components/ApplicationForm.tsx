@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, type FormEvent } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -45,6 +45,7 @@ const referralOptions = [
 
 export function ApplicationForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -60,6 +61,13 @@ export function ApplicationForm() {
     tierInterest: "",
     referralSource: "",
   });
+
+  useEffect(() => {
+    const tier = searchParams.get("tier");
+    if (tier && tierOptions.includes(tier)) {
+      setFormData((prev) => ({ ...prev, tierInterest: tier }));
+    }
+  }, [searchParams]);
 
   function updateField(field: string, value: string) {
     setFormData((prev) => ({ ...prev, [field]: value }));

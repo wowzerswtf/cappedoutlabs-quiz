@@ -12,6 +12,7 @@ export interface TierData {
   tag: string;
   bullets: string[];
   featured?: boolean;
+  applyValue: string;
 }
 
 interface TierCardProps {
@@ -70,7 +71,7 @@ export function TierCard({ tier, index }: TierCardProps) {
             : "bg-navy hover:bg-navy-light text-white"
         )}
       >
-        <Link href="/apply">Apply</Link>
+        <Link href={`/apply?tier=${encodeURIComponent(tier.applyValue)}`}>Apply</Link>
       </Button>
     </motion.div>
   );
