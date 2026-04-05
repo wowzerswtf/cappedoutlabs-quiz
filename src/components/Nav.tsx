@@ -43,7 +43,10 @@ export function Nav() {
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="text-lg font-bold tracking-tight text-navy"
+            className={cn(
+              "text-lg font-bold tracking-tight transition-colors",
+              scrolled ? "text-navy" : "text-white"
+            )}
           >
             Capped Out Labs
           </Link>
@@ -56,9 +59,13 @@ export function Nav() {
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors",
-                  pathname === link.href
-                    ? "text-navy"
-                    : "text-text-secondary hover:text-navy"
+                  scrolled
+                    ? pathname === link.href
+                      ? "text-navy"
+                      : "text-text-secondary hover:text-navy"
+                    : pathname === link.href
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
                 )}
               >
                 {link.label}
@@ -75,7 +82,10 @@ export function Nav() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-navy"
+            className={cn(
+              "md:hidden p-2 transition-colors",
+              scrolled ? "text-navy" : "text-white"
+            )}
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
