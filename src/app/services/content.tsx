@@ -1,0 +1,292 @@
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
+import { CTABanner } from "@/components/CTABanner";
+import { fadeUp, staggerContainer } from "@/lib/animations";
+
+const tierDetails = [
+  {
+    name: "AI Revenue Sprint",
+    price: "$15,000",
+    timeline: "2 weeks",
+    whoFor:
+      "Operators who know AI is the next move but want a real deliverable before writing a bigger check.",
+    deliverables: [
+      "AI readiness audit across sales, ops, fulfillment, and CS",
+      "Single highest-leverage workflow identified and built live",
+      "30-day support window post-deployment",
+      "Clear ascension path to Tier 2 with scoped SOW",
+    ],
+    outcome:
+      "A working AI system in production, a documented audit of your highest-leverage opportunities, and a clear path to scale.",
+  },
+  {
+    name: "AI Revenue Infrastructure",
+    price: "$50K–$150K",
+    timeline: "6–10 weeks",
+    whoFor:
+      "Established businesses doing $3M+ that are ready to rebuild core workflows around AI.",
+    deliverables: [
+      "3–5 core workflows rebuilt with AI across departments",
+      "Coverage across sales, operations, fulfillment, and customer success",
+      "Staff training with recorded SOPs",
+      "90-day managed handoff with optimization cycles",
+    ],
+    outcome:
+      "A business running leaner with AI systems your team actually uses. Revenue impact visible within the engagement.",
+  },
+  {
+    name: "Full AI Transformation",
+    price: "$200K–$500K+",
+    timeline: "3–6 months",
+    whoFor:
+      "Operators preparing for acquisition who need AI systematization across the entire business.",
+    deliverables: [
+      "Full infrastructure rebuild with AI agents across all departments",
+      "Governance framework and optimization protocols",
+      "Executive dashboards and reporting systems",
+      "Complete documentation for due diligence",
+    ],
+    outcome:
+      "A business positioned for a premium exit multiple. Systems, not headcount, driving revenue. Acquirer-ready documentation.",
+  },
+  {
+    name: "Equity / Rev-Share",
+    price: "No upfront cost",
+    timeline: "Flexible",
+    whoFor:
+      "Operators with businesses that have real upside — where our incentives align with yours.",
+    deliverables: [
+      "3–10% equity OR 10–20% revenue share on incremental lift",
+      "Same deliverables as Tier 1 or Tier 2 engagements",
+      "12–24 month revenue share window",
+      "Business evaluation before engagement — we assess the operator and the opportunity",
+    ],
+    outcome:
+      "Aligned incentives. We make money when you make money. Same build quality, different payment structure.",
+  },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Apply",
+    body: "4-minute application. We review within 24 hours.",
+  },
+  {
+    step: "02",
+    title: "Discovery",
+    body: "30-minute call. No pitch decks. Real conversation.",
+  },
+  {
+    step: "03",
+    title: "Build",
+    body: "We design, build, and deploy your system.",
+  },
+  {
+    step: "04",
+    title: "Handoff",
+    body: "Documentation, training, 30–90 day support.",
+  },
+];
+
+const faqs: FAQItem[] = [
+  {
+    question: "We tried AI before and it didn't work.",
+    answer:
+      "Almost every time we hear this, what happened is someone installed a tool and hoped the team would use it. Installing tools is not transformation. Building systems is. We've never walked away from a client because their previous attempt failed — we use it as a diagnostic.",
+  },
+  {
+    question: "Our data is a mess. Are we ready?",
+    answer:
+      "Data readiness is part of what we audit in week one. Most clients aren't ready — that's normal and expected. It's not a blocker.",
+  },
+  {
+    question: "We already have someone working on AI internally.",
+    answer:
+      "Good. We work alongside internal teams on every engagement. The businesses that get the most from us have someone internal who can own what we build after handoff.",
+  },
+  {
+    question: "What does the equity path actually look like?",
+    answer:
+      "We take 3–10% equity or a 10–20% revenue share on the incremental lift we create, for 12–24 months. We evaluate the business, the operator, and the upside — not the ability to write a check. Apply and we'll have the conversation.",
+  },
+  {
+    question: "How is this different from hiring an AI consultant?",
+    answer:
+      "Consultants deliver advice. We deliver running systems. The difference shows up on day 90 when your system is still operating, not gathering dust in a Notion doc.",
+  },
+];
+
+export function ServicesContent() {
+  return (
+    <>
+      {/* HERO */}
+      <section className="relative bg-navy grid-pattern overflow-hidden">
+        <div className="noise-overlay" />
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-24 lg:pt-40 lg:pb-32"
+        >
+          <motion.h1
+            variants={fadeUp}
+            className="text-4xl md:text-5xl font-bold text-white max-w-3xl leading-tight"
+          >
+            AI systems built for operators who think in exits
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 text-lg text-white/60 leading-relaxed max-w-2xl"
+          >
+            Choose your entry point. Every path leads to the same place — a
+            business that runs leaner, closes faster, and exits at a premium.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* TIER DETAILS */}
+      {tierDetails.map((tier, i) => (
+        <section
+          key={i}
+          className={i % 2 === 0 ? "bg-white" : "bg-surface"}
+        >
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="mx-auto max-w-7xl px-6 lg:px-8 py-24"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+              <div>
+                <motion.div variants={fadeUp}>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-electric mb-3">
+                    Tier {i + 1}
+                  </p>
+                  <h2 className="text-3xl font-bold text-navy">{tier.name}</h2>
+                  <div className="mt-4 flex items-baseline gap-4">
+                    <span className="text-2xl font-bold font-mono text-text-primary">
+                      {tier.price}
+                    </span>
+                    <span className="text-sm text-text-secondary">
+                      {tier.timeline}
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.p
+                  variants={fadeUp}
+                  className="mt-6 text-text-secondary leading-relaxed"
+                >
+                  <span className="font-semibold text-text-primary">
+                    Who it&apos;s for:
+                  </span>{" "}
+                  {tier.whoFor}
+                </motion.p>
+
+                <motion.div variants={fadeUp} className="mt-8">
+                  <Button
+                    asChild
+                    className="bg-electric hover:bg-electric-dark text-white rounded-lg px-8 h-11 text-sm font-semibold"
+                  >
+                    <Link href="/apply">Apply for This Tier</Link>
+                  </Button>
+                </motion.div>
+              </div>
+
+              <div>
+                <motion.div variants={fadeUp}>
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-4">
+                    What you get
+                  </h3>
+                  <ul className="space-y-3">
+                    {tier.deliverables.map((d, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-3 text-sm text-text-primary"
+                      >
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-electric shrink-0" />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                <motion.div variants={fadeUp} className="mt-8">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-3">
+                    What it looks like at the end
+                  </h3>
+                  <p className="text-sm text-text-primary leading-relaxed">
+                    {tier.outcome}
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      ))}
+
+      {/* PROCESS */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold text-navy text-center"
+          >
+            The process
+          </motion.h2>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative"
+              >
+                <span className="text-4xl font-bold font-mono text-electric/20">
+                  {step.step}
+                </span>
+                <h3 className="mt-2 text-lg font-bold text-navy">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+                  {step.body}
+                </p>
+                {i < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-6 right-0 w-full h-px bg-border -mr-4" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-surface">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8 py-24 lg:py-32">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold text-navy text-center mb-12"
+          >
+            Common questions
+          </motion.h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </section>
+
+      <CTABanner />
+    </>
+  );
+}
