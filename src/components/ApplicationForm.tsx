@@ -116,6 +116,22 @@ export function ApplicationForm() {
       return;
     }
     setError("");
+
+    // Capture partial lead after Step 1
+    if (step === 0) {
+      const nameParts = formData.fullName.trim().split(" ");
+      fetch("/api/apply/partial", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: nameParts[0] || "",
+          lastName: nameParts.slice(1).join(" ") || "",
+          email: formData.email,
+          phone: formData.phone,
+        }),
+      }).catch(() => {}); // fire-and-forget
+    }
+
     setDirection(1);
     setStep((s) => Math.min(s + 1, STEPS.length - 1));
   }
@@ -145,11 +161,16 @@ export function ApplicationForm() {
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
 
+    let website = formData.website.trim();
+    if (website && !/^https?:\/\//i.test(website)) {
+      website = `https://${website}`;
+    }
+
     const payload = {
       firstName,
       lastName,
       businessName: formData.businessName,
-      website: formData.website,
+      website,
       email: formData.email,
       phone: formData.phone,
       annualRevenue: formData.annualRevenue,
@@ -301,10 +322,9 @@ export function ApplicationForm() {
                   <Label htmlFor="website">Website</Label>
                   <Input
                     id="website"
-                    type="url"
                     value={formData.website}
                     onChange={(e) => updateField("website", e.target.value)}
-                    placeholder="https://"
+                    placeholder="yourcompany.com"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -373,43 +393,41 @@ export function ApplicationForm() {
                     onChange={(e) => updateField("aiHistory", e.target.value)}
                   />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Which tier interests you?</Label>
-                    <Select
-                      value={formData.tierInterest}
-                      onValueChange={(v) => updateField("tierInterest", v ?? "")}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a tier" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {tierOptions.map((opt) => (
-                          <SelectItem key={opt} value={opt}>
-                            {opt}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label>How did you hear about us?</Label>
-                    <Select
-                      value={formData.referralSource}
-                      onValueChange={(v) => updateField("referralSource", v ?? "")}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select source" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {referralOptions.map((opt) => (
-                          <SelectItem key={opt} value={opt}>
-                            {opt}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                <div className="space-y-2">
+                  <Label>Which tier interests you?</Label>
+                  <Select
+                    value={formData.tierInterest}
+                    onValueChange={(v) => updateField("tierInterest", v ?? "")}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a tier" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {tierOptions.map((opt) => (
+                        <SelectItem key={opt} value={opt}>
+                          {opt}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label>How did you hear about us?</Label>
+                  <Select
+                    value={formData.referralSource}
+                    onValueChange={(v) => updateField("referralSource", v ?? "")}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select source" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {referralOptions.map((opt) => (
+                        <SelectItem key={opt} value={opt}>
+                          {opt}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </>
             )}

@@ -76,13 +76,26 @@ async function ghlRequest(method: string, path: string, body?: unknown) {
   return { status: res.status, ok: res.ok, data };
 }
 
-// ── GHL: create contact + add to pipeline ────────────────────────
+// ── GHL: find existing contact by email ──────────────────────────
+async function findContactByEmail(email: string): Promise<string | null> {
+  const res = await ghlRequest("POST", "/contacts/search", {
+    locationId: GHL_LOCATION_ID,
+    query: email,
+    pageLimit: 1,
+  });
+  const contacts = res.data?.contacts || [];
+  const match = contacts.find(
+    (c: { email?: string }) => c.email?.toLowerCase() === email.toLowerCase()
+  );
+  return match?.id || null;
+}
+
+// ── GHL: create or update contact + add to pipeline ─────────────
 async function createGhlContact(payload: ApplicationPayload) {
   if (!GHL_API_KEY || !GHL_LOCATION_ID) {
     throw new Error("GHL_API_KEY and GHL_LOCATION_ID are required");
   }
 
-  // Step 1: Create contact with custom fields
   const customFields = Object.entries(CUSTOM_FIELDS)
     .filter(([key]) => payload[key as keyof ApplicationPayload])
     .map(([key, id]) => ({
@@ -90,29 +103,55 @@ async function createGhlContact(payload: ApplicationPayload) {
       field_value: payload[key as keyof ApplicationPayload],
     }));
 
-  const contactRes = await ghlRequest("POST", "/contacts/", {
-    locationId: GHL_LOCATION_ID,
-    firstName: payload.firstName,
-    lastName: payload.lastName,
-    email: payload.email,
-    phone: payload.phone,
-    tags: ["labs-applicant"],
-    source: payload.source || "cappedoutlabs.com",
-    customFields,
-  });
+  // Check if contact already exists (from partial lead capture)
+  const existingId = await findContactByEmail(payload.email);
 
-  if (!contactRes.ok) {
-    console.error("GHL contact creation failed:", contactRes.status, contactRes.data);
-    throw new Error(`GHL contact creation failed (${contactRes.status})`);
+  let contactId: string;
+
+  if (existingId) {
+    // Update existing contact with full application data
+    const updateRes = await ghlRequest("PUT", `/contacts/${existingId}`, {
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      phone: payload.phone,
+      tags: ["labs-applicant"],
+      source: payload.source || "cappedoutlabs.com",
+      customFields,
+    });
+
+    if (!updateRes.ok) {
+      console.error("GHL contact update failed:", updateRes.status, updateRes.data);
+      throw new Error(`GHL contact update failed (${updateRes.status})`);
+    }
+
+    contactId = existingId;
+    console.log("GHL contact updated:", contactId);
+  } else {
+    // Create new contact
+    const contactRes = await ghlRequest("POST", "/contacts/", {
+      locationId: GHL_LOCATION_ID,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      email: payload.email,
+      phone: payload.phone,
+      tags: ["labs-applicant"],
+      source: payload.source || "cappedoutlabs.com",
+      customFields,
+    });
+
+    if (!contactRes.ok) {
+      console.error("GHL contact creation failed:", contactRes.status, contactRes.data);
+      throw new Error(`GHL contact creation failed (${contactRes.status})`);
+    }
+
+    contactId = contactRes.data?.contact?.id;
+    if (!contactId) {
+      console.error("GHL contact response missing ID:", contactRes.data);
+      throw new Error("GHL contact created but no ID returned");
+    }
+
+    console.log("GHL contact created:", contactId);
   }
-
-  const contactId = contactRes.data?.contact?.id;
-  if (!contactId) {
-    console.error("GHL contact response missing ID:", contactRes.data);
-    throw new Error("GHL contact created but no ID returned");
-  }
-
-  console.log("GHL contact created:", contactId);
 
   // Step 2: Create opportunity in pipeline at "Applied" stage
   const oppRes = await ghlRequest("POST", "/opportunities/", {
