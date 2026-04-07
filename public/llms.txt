@@ -49,6 +49,17 @@ Capped Out Labs builds production AI systems for operators doing $1M–$50M in r
 - Tier 3 — Full AI Transformation: $200K–$500K+, 3–6 months. Full infrastructure rebuild with AI agents across all departments.
 - Tier 4 — Equity / Rev-Share: No upfront cost. 3–10% equity or 10–20% rev-share on incremental lift.
 
+## Resources
+
+- [How to improve sales show rate](https://cappedoutlabs.com/resources/how-to-improve-sales-show-rate): 26.3% to 77.9% using AI pre-call intelligence — real deployment data
+- [AI sales infrastructure guide](https://cappedoutlabs.com/resources/ai-sales-infrastructure-guide): What it is, what it costs ($15K–$150K), and what it delivers
+- [How to reduce customer acquisition cost](https://cappedoutlabs.com/resources/how-to-reduce-customer-acquisition-cost): $11,765 to $1,217 (-90%) in 45 days using AI sales infrastructure
+- [Done-for-you AI consulting](https://cappedoutlabs.com/resources/ai-consulting-done-for-you): Production systems, not strategy decks — what real delivery looks like
+- [AI transformation for operators](https://cappedoutlabs.com/resources/ai-transformation-for-operators): Operator-grade AI built for revenue and exit, not innovation metrics
+- [How to systematize a sales team](https://cappedoutlabs.com/resources/how-to-systematize-sales-team): Closer OS standardized prep, support, and follow-up across every rep
+- [AI consulting results case study](https://cappedoutlabs.com/resources/ai-consulting-results-case-study): +1,866% revenue, -90% CAC, 23.4x ROAS — full breakdown with methodology
+- [How to scale sales without hiring](https://cappedoutlabs.com/resources/how-to-scale-sales-without-hiring): AI handles the 60% of closer time spent on non-selling tasks
+
 ## Contact
 
 - Apply: https://cappedoutlabs.com/apply
