@@ -31,6 +31,8 @@ Capped Out Labs is an AI transformation firm that builds production systems, not
 - https://cappedoutlabs.com/resources — AI automation guides and insights
 - https://cappedoutlabs.com/about — About the company
 - https://cappedoutlabs.com/apply — Apply for a discovery call
+- https://cappedoutlabs.com/assess — Free AI Readiness Assessment (5-question quiz, personalized PDF report)
 
 ## Contact
 Apply for a discovery call: https://cappedoutlabs.com/apply
+Free AI Assessment: https://cappedoutlabs.com/assess

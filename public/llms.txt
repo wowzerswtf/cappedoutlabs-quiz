@@ -9,6 +9,7 @@
 - [Case Studies](https://cappedoutlabs.com/case-studies): Documented results from live AI deployments with real metrics — not pilots or prototypes
 - [About](https://cappedoutlabs.com/about): Origin story, Capped Out Media track record, why we think in exits
 - [Apply](https://cappedoutlabs.com/apply): Discovery call application — 4-minute form, reviewed within 24 hours
+- [Free AI Assessment](https://cappedoutlabs.com/assess): 5-question AI readiness quiz — scores businesses across scale, pain clarity, AI maturity, urgency, and strategic fit. Delivers personalized PDF report with tier, biggest opportunity, cost-of-waiting analysis, and 90-day roadmap
 
 ## Case study results (Closer OS)
 
@@ -60,7 +61,25 @@ Capped Out Labs builds production AI systems for operators doing $1M–$50M in r
 - [AI consulting results case study](https://cappedoutlabs.com/resources/ai-consulting-results-case-study): +1,866% revenue, -90% CAC, 23.4x ROAS — full breakdown with methodology
 - [How to scale sales without hiring](https://cappedoutlabs.com/resources/how-to-scale-sales-without-hiring): AI handles the 60% of closer time spent on non-selling tasks
 
+## AI Readiness Assessment
+
+Free 5-question quiz at https://cappedoutlabs.com/assess that scores businesses across 5 dimensions:
+- Business Scale (revenue qualification)
+- Pain Clarity (growth bottleneck identification — maps to Closer OS, ContractorOS, or AI sales automation)
+- AI Maturity (current adoption level from none to production)
+- Urgency (decision timeline)
+- Strategic Fit (alignment with exit-focused infrastructure)
+
+Scoring tiers:
+- AI Ready (20-25/25): Business is positioned for immediate AI infrastructure build
+- AI Primed (14-19/25): Strong position, right partner closes the gap
+- AI Curious (9-13/25): Getting closer, needs a few pieces to come together
+- AI Aware (5-8/25): Early journey, can skip common mistakes
+
+Each quiz taker receives a personalized assessment email with branded PDF attachment including dimension breakdown, biggest opportunity analysis, cost-of-waiting calculation, and 90-day roadmap.
+
 ## Contact
 
 - Apply: https://cappedoutlabs.com/apply
+- Free AI Assessment: https://cappedoutlabs.com/assess
 - Website: https://cappedoutlabs.com

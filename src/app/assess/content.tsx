@@ -3,9 +3,37 @@
 import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { AssessmentQuiz } from "@/components/AssessmentQuiz";
-import { WebPageSchema } from "@/components/SchemaMarkup";
+import { WebPageSchema, AssessmentSchema, FAQSchema, BreadcrumbSchema } from "@/components/SchemaMarkup";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { CheckCircle2, Clock, Zap, Shield } from "lucide-react";
+import { FAQAccordion } from "@/components/FAQAccordion";
+
+const assessFaqs = [
+  {
+    question: "What does the AI readiness assessment measure?",
+    answer: "The assessment scores your business across 5 dimensions: business scale, pain clarity (your #1 growth bottleneck), AI maturity (current adoption level), urgency (decision timeline), and strategic fit (alignment with exit-focused AI infrastructure). Each dimension is scored 1–5, with a total score out of 25.",
+  },
+  {
+    question: "What do I get after taking the assessment?",
+    answer: "You receive an instant personalized report delivered to your email. It includes your AI readiness tier (AI Ready, AI Primed, AI Curious, or AI Aware), a dimension breakdown, your biggest AI opportunity mapped to a real case study, a cost-of-waiting analysis based on your revenue, and a 90-day implementation roadmap. A branded PDF is attached to the email.",
+  },
+  {
+    question: "How long does the assessment take?",
+    answer: "Under 2 minutes. There are 5 multiple-choice questions — you click your answer and it auto-advances to the next question. No typing required beyond your name and email.",
+  },
+  {
+    question: "Is the assessment really free?",
+    answer: "Yes, completely free with no obligation. We built it to help business operators understand where AI fits in their business. If your score indicates you're ready for a build, we'll invite you to a free 30-minute discovery call. If not, we'll send you resources to help you get there.",
+  },
+  {
+    question: "What businesses is this assessment designed for?",
+    answer: "Operators running businesses doing $500K–$50M+ in annual revenue across any industry. The assessment is especially valuable for businesses with sales teams, operational complexity, or owners looking to reduce their day-to-day involvement for eventual exit.",
+  },
+  {
+    question: "What happens with my information?",
+    answer: "Your email and name are used to deliver your personalized assessment. We may send you relevant resources based on your tier. We never sell your data. You can unsubscribe at any time.",
+  },
+];
 
 const trustSignals = [
   {
@@ -32,6 +60,14 @@ export function AssessContent() {
   return (
     <>
       <WebPageSchema name="Free AI Readiness Assessment" path="/assess" />
+      <AssessmentSchema />
+      <FAQSchema items={assessFaqs} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://cappedoutlabs.com" },
+          { name: "Free AI Assessment", url: "https://cappedoutlabs.com/assess" },
+        ]}
+      />
 
       {/* HERO */}
       <section className="relative overflow-hidden">
@@ -154,6 +190,21 @@ export function AssessContent() {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ — SEO + LLM rich content */}
+      <section className="bg-surface">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8 py-20 lg:py-24">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-navy text-center mb-12"
+          >
+            Common questions about the assessment
+          </motion.h2>
+          <FAQAccordion items={assessFaqs} />
         </div>
       </section>
     </>

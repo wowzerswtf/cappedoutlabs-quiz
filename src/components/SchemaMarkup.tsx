@@ -163,6 +163,111 @@ export function FAQSchema({
   );
 }
 
+export function AssessmentSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: "AI Readiness Assessment",
+    description:
+      "Free 5-question AI readiness assessment for business operators. Scores your business across 5 dimensions — scale, pain clarity, AI maturity, urgency, and strategic fit — then delivers a personalized report with your tier, biggest opportunity, cost-of-waiting analysis, and 90-day roadmap.",
+    url: "https://cappedoutlabs.com/assess",
+    provider: {
+      "@type": "Organization",
+      name: "Capped Out Labs",
+      url: "https://cappedoutlabs.com",
+    },
+    about: [
+      {
+        "@type": "Thing",
+        name: "Artificial Intelligence readiness",
+        description: "Measuring business readiness for AI infrastructure deployment",
+      },
+      {
+        "@type": "Thing",
+        name: "AI consulting assessment",
+        description: "Qualification assessment for AI transformation services",
+      },
+    ],
+    educationalLevel: "Professional",
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Business operators doing $500K–$50M+ in annual revenue",
+    },
+    numberOfQuestions: 5,
+    timeRequired: "PT2M",
+    isAccessibleForFree: true,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description: "Free AI readiness assessment with personalized report",
+    },
+    hasPart: [
+      {
+        "@type": "Question",
+        name: "Business Scale",
+        text: "What is your business doing in annual revenue?",
+        about: "Revenue qualification and operational complexity assessment",
+      },
+      {
+        "@type": "Question",
+        name: "Growth Bottleneck",
+        text: "What is the number one thing keeping your business from growing 2x in the next 12 months?",
+        about: "Pain point identification mapping to AI solutions (sales, operations, lead conversion, data, general)",
+      },
+      {
+        "@type": "Question",
+        name: "AI Maturity",
+        text: "How is your business currently using AI?",
+        about: "Current state of AI adoption from none to production systems",
+      },
+      {
+        "@type": "Question",
+        name: "Timeline and Urgency",
+        text: "If you found the right AI partner, how fast would you move?",
+        about: "Decision timeline and urgency for AI implementation",
+      },
+      {
+        "@type": "Question",
+        name: "Strategic Vision",
+        text: "When you think about the next 3 years, what matters most?",
+        about: "Strategic alignment with exit-focused AI infrastructure",
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function BreadcrumbSchema({
+  items,
+}: {
+  items: { name: string; url: string }[];
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export function CaseStudySchema() {
   const schema = {
     "@context": "https://schema.org",
